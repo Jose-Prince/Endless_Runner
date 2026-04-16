@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,8 +7,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] spawnPoints;
     [SerializeField] float timer;
     [SerializeField] float timeBetweenSpawns;
+    [SerializeField] TextMeshProUGUI distanceUI;
 
     public float speedMultiplier;
+
+    private float distance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,9 +22,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedMultiplier += Time.deltaTime * 0.1f;
+        distanceUI.text = "Distance: " + distance.ToString("F2");
+        speedMultiplier += Time.deltaTime * 1.2f;
 
         timer += Time.deltaTime;
+
+        distance += Time.deltaTime * 0.1f;
         if (timer > timeBetweenSpawns)
         {
             timer = 0;
