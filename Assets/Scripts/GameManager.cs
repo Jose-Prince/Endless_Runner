@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] float timeBetweenSpawns;
 
+    public float speedMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,6 +18,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speedMultiplier += Time.deltaTime * 0.1f;
+
         timer += Time.deltaTime;
         if (timer > timeBetweenSpawns)
         {
