@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.AddForce(Vector2.up * jump);
+            rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
         }    
     }
 
