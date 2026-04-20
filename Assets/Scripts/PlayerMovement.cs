@@ -6,31 +6,42 @@ public class PlayerMovement : MonoBehaviour
     public float jump;
     private Rigidbody2D rb;
     private bool isGrounded;
+    private bool isDropping;
+    private Collider2D currentGround;
+    private Collider2D lastGround;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();    
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+    
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
         }    
+
+        if (Input.GetKeyDown(KeyCode.S) && isGrounded && !isDropping)
+        {
+            currentGround.enabled = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            if (lastGround != null)
+                lastGround.enabled = true;
+                
+            currentGround = collision.collider;
+            currentGround.enabled = true;
             isGrounded = true;
         }     
     }
@@ -39,7 +50,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            lastGround = currentGround;
             isGrounded = false;
+            currentGround = null;
         }
     }
 

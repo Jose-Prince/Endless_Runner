@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 234002479}
   - component: {fileID: 234002482}
   - component: {fileID: 234002481}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor2
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1149,7 +1149,7 @@ GameObject:
   - component: {fileID: 1036983242}
   - component: {fileID: 1036983244}
   - component: {fileID: 1036983245}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1691,7 +1691,8 @@ GameObject:
   - component: {fileID: 1278613186}
   - component: {fileID: 1278613185}
   - component: {fileID: 1278613189}
-  m_Layer: 0
+  - component: {fileID: 1278613190}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1858,6 +1859,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   jump: 12
+--- !u!114 &1278613190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278613184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cab58d733812104280795ae1fd703c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDrop
+  playerLayer: 7
+  platformLayer: 6
 --- !u!1 &1919082134
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,7 +1886,7 @@ GameObject:
   - component: {fileID: 1919082136}
   - component: {fileID: 1919082139}
   - component: {fileID: 1919082138}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor3
   m_TagString: Ground
   m_Icon: {fileID: 0}
