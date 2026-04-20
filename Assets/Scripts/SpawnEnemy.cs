@@ -30,4 +30,10 @@ public class SpawnEnemy : MonoBehaviour
         
         rb.linearVelocity = Vector2.left * (speed + gm.speedMultiplier);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+            gameObject.SetActive(false);
+    }
 }

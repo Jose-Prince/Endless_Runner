@@ -1,18 +1,25 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float jump;
+    [SerializeField] float jump;
+    [SerializeField] Transform firePoint;
+    [SerializeField] float burstDelay = 0.1f;
+
+    private bool isShooting = false;
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isDropping;
     private Collider2D currentGround;
     private Collider2D lastGround;
+    private BulletPool pool;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();    
+        rb = GetComponent<Rigidbody2D>();   
+        pool = GetComponent<BulletPool>();
     }
 
     void Start()
@@ -31,6 +38,32 @@ public class PlayerMovement : MonoBehaviour
         {
             currentGround.enabled = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.J) && isGrounded && !isShooting)
+        {
+            StartCoroutine(ShootBurst());
+        }
+    }
+
+    IEnumerator ShootBurst()
+    {
+        isShooting = true;
+
+        for (int i = 0; i < 3; i++)
+        {
+            Shoot();
+            yield return new WaitForSeconds(burstDelay);
+        }    
+
+        isShooting = false;
+    }
+
+    void Shoot()
+    {
+        GameObject bullet = pool.GetBullet();
+        bullet.transform.position = firePoint.position;
+        bullet.transform.rotation = Quaternion.identity;
+        bullet.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -39,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (lastGround != null)
                 lastGround.enabled = true;
-                
+
             currentGround = collision.collider;
             currentGround.enabled = true;
             isGrounded = true;

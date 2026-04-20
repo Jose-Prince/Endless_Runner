@@ -699,6 +699,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &449963744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 449963745}
+  m_Layer: 7
+  m_Name: Aim
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &449963745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449963744}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.19, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1278613188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,6 +1769,7 @@ GameObject:
   - component: {fileID: 1278613185}
   - component: {fileID: 1278613189}
   - component: {fileID: 1278613190}
+  - component: {fileID: 1278613191}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -1889,7 +1921,8 @@ Transform:
   m_LocalPosition: {x: -9.15, y: -3.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 449963745}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1278613189
@@ -1905,6 +1938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   jump: 12
+  firePoint: {fileID: 449963745}
+  burstDelay: 0.1
 --- !u!114 &1278613190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1920,6 +1955,20 @@ MonoBehaviour:
   playerLayer: 7
   platformLayer: 6
   isDropping: 0
+--- !u!114 &1278613191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278613184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2a86b077605114089c16db161013ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletPool
+  bulletPrefab: {fileID: 2360275997699347821, guid: 91c3b0861d43edc4ebc16f9a0eafe106, type: 3}
+  poolSize: 9
 --- !u!1 &1919082134
 GameObject:
   m_ObjectHideFlags: 0
