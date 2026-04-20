@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject spawnEnemy;
     [SerializeField] GameObject[] spawnPoints;
     [SerializeField] float timer;
     [SerializeField] float timeBetweenSpawns;
@@ -31,8 +30,11 @@ public class GameManager : MonoBehaviour
         if (timer > timeBetweenSpawns)
         {
             timer = 0;
-            int randNum = Random.Range(0, 3);
-            Instantiate(spawnEnemy, spawnPoints[randNum].transform.position, Quaternion.identity);
+            int randNum = Random.Range(0, spawnPoints.Length);
+
+            GameObject enemy = EnemyPool.Instance.GetEnemy();
+            enemy.transform.position = spawnPoints[randNum].transform.position;
+            enemy.SetActive(true);    
         }    
     }
 }

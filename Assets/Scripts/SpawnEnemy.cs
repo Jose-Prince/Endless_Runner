@@ -14,14 +14,18 @@ public class SpawnEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    void OnEnable()
+    {
+        timer = 0;
+    }
+
     void Update()
     {
         timer += Time.deltaTime;
 
         if (timer > 6)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         
         rb.linearVelocity = Vector2.left * (speed + gm.speedMultiplier);
