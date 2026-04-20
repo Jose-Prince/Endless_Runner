@@ -8,6 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] float burstDelay = 0.1f;
 
+    [SerializeField] Vector2 rightOffset = new Vector2(1f, 0f);
+    [SerializeField] Vector2 upOffset = new Vector2(0f, 1f);
+    [SerializeField] Vector2 diagOffset = new Vector2(0.7f, 0.7f);
+
     private bool isShooting = false;
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -29,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        UpdateFirePoint();
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
@@ -62,8 +68,30 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject bullet = pool.GetBullet();
         bullet.transform.position = firePoint.position;
-        bullet.transform.rotation = Quaternion.identity;
+        bullet.transform.rotation = firePoint.rotation;
         bullet.SetActive(true);
+    }
+
+    void UpdateFirePoint()
+    {
+        bool up = Input.GetKey(KeyCode.W);
+        bool right = Input.GetKey(KeyCode.D);
+
+        if (up && right)
+        {
+            firePoint.localPosition = diagOffset;
+            firePoint.localRotation = Quaternion.Euler(0, 0, 22.5f);
+        }
+        else if (up)
+        {
+            firePoint.localPosition = upOffset;
+            firePoint.localRotation = Quaternion.Euler(0, 0, 45f);
+        }
+        else
+        {
+            firePoint.localPosition = rightOffset;
+            firePoint.localRotation = Quaternion.Euler(0, 0, 0f);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

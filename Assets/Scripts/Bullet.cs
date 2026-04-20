@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        transform.Translate(transform.right * speed * Time.deltaTime);
 
         timer += Time.deltaTime;
         if (timer > 2f)
