@@ -5,6 +5,7 @@ public class SpawnEnemy : MonoBehaviour
     private Rigidbody2D rb;
     private GameManager gm;
     private float timer;
+    private GameObject player;
 
     [SerializeField] float speed;
 
